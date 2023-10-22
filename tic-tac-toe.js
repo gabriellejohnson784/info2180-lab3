@@ -6,12 +6,12 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   document.addEventListener('DOMContentLoaded', function () {
-    const squares = document.querySelectorAll('.square');
+    const Square = document.querySelectorAll('.square');
     const state = new Array(9).fill(''); // Initialize an empty array to track the game state
     let playerX = true; //  player X 
     let playerY = false; //player y
   
-    squares.forEach((square, index) => {
+    Square.forEach((square, index) => {
       square.addEventListener('click', () => {
         if (!square.textContent && state[index] === '') {
           if (playerX) {
@@ -20,13 +20,22 @@ document.addEventListener('DOMContentLoaded', function () {
             state[index] = 'X';
             playerX = false;
             playerY = true;
-          } else {
+          } 
+          else {
             square.textContent = 'O';
             square.classList.add('O');
             state[index] = 'O';
             playerX = true;
             playerY = false;
           }
+          square.addEventListener('mouseover', () => {
+            if (!square.textContent) {
+              square.classList.add('hover');
+            }
+          });
+          square.addEventListener('mouseout', () => {
+            square.classList.add('hover.O');
+          });
   
           // Check for win/draw
           checkWin(state);

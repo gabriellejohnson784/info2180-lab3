@@ -100,13 +100,13 @@ h1 span {
   color: var(--coral);
 }
 
-.hover {
+.square:hover {
   background: var(--coral);
   border-color: var(--lighterBlue);
   cursor: pointer;
 }
 
-.hover.O {
+.square:hover.O {
   color: white;
 }
 
