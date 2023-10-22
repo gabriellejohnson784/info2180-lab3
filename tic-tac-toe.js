@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const status = document.getElementById('status'); // Display status message
     let playerX = true; // Player X
     let playerO = false; // Player O
-    let gameOver = false; // To track the game's state
+    let gameStatus = false; // To track the game's state
+    const Button = document.querySelector('.btn'); 
   
     function checkWin(state) {
       const winningCombinations = [
@@ -30,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (state[a] && state[a] === state[b] && state[a] === state[c]) {
           status.textContent = `Congratulations! ${state[a]} is the Winner!`;
           status.classList.add('you-won');
-          gameOver = true;
+          gameStatus = true;
           return;
         }
       }
@@ -38,13 +39,13 @@ document.addEventListener('DOMContentLoaded', function () {
       // Check for a draw
       if (state.every(square => square !== '')) {
         status.textContent = 'It\'s a Draw!';
-        gameOver = true;
+        gameStatus = true;
       }
     }
   
     Squares.forEach((square, index) => {
       square.addEventListener('click', () => {
-        if (!gameOver && !square.textContent && state[index] === '') {
+        if (!gameStatus && !square.textContent && state[index] === '') {
           if (playerX) {
             square.textContent = 'X';
             square.classList.add('X');
@@ -76,8 +77,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
     });
-    
-  });
+    Button.addEventListener('click', () => {
+        state.fill('');
+        Squares.forEach(square => {
+          square.textContent = '';
+          square.classList.remove('X', 'O');
+        });;
+        status.textContent = "Move your mouse over a square and click to play an X or an O.";
+        status.classList.remove('you-won');
+        gameStatus=false;
+
+    });
+
+});
   
 
   
