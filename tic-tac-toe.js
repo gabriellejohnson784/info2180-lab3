@@ -1,3 +1,4 @@
+//620156095
 document.addEventListener('DOMContentLoaded', function () {
     const Square = document.querySelectorAll('.square');
     Square.forEach(square => {
@@ -15,20 +16,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const Button = document.querySelector('.btn'); 
   
     function checkWin(state) {
-      const winningCombinations = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6],
+      const Combinations = [
+        [0, 1, 2],[3, 4, 5],[6, 7, 8],[0, 3, 6],[1, 4, 7],[2, 5, 8],[0, 4, 8],[2, 4, 6],
       ];
   
-      for (const combo of winningCombinations) {
-        const [a, b, c] = combo;
-        if (state[a] && state[a] === state[b] && state[a] === state[c]) {
+      for (const comb of Combinations) {
+        const [a, b, c] = comb;
+        if (state[a] && state[a] === state[b] && state[a] === state[c]) 
+        {
           status.textContent = `Congratulations! ${state[a]} is the Winner!`;
           status.classList.add('you-won');
           gameStatus = true;
@@ -36,9 +31,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }
   
-      // Check for a draw
-      if (state.every(square => square !== '')) {
-        status.textContent = 'It\'s a Draw!';
+      if (!state.includes('')) 
+      {
+        status.textContent = 'Draw!';
         gameStatus = true;
       }
     }
@@ -60,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
             playerO = false;
           }
   
-          // Check for win/draw
+
           checkWin(state);
         }
       });
